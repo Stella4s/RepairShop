@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using RepairShop.DAL;
 using RepairShop.Models;
+using RepairShop.ViewModels;
 
 namespace RepairShop.Controllers
 {
@@ -18,7 +19,17 @@ namespace RepairShop.Controllers
         // GET: RepairOrders
         public ActionResult Index()
         {
-            return View(db.RepairOrders.ToList());
+            var vm = new RepairOrderVM();
+            vm.RepairOrders = db.RepairOrders.ToList();
+            IQueryable<RepairStatusGroup> data = from order in db.RepairOrders
+                                                 group order by order.RepairStatus into statusGroup
+                                                 select new RepairStatusGroup()
+                                                 {
+                                                     RepairStatus = statusGroup.Key,
+                                                     StatusCount = statusGroup.Count()
+                                                 };
+            vm.RepairStatusGroups = data.ToList(); ;
+            return View(vm);
         }
 
         // GET: RepairOrders/Details/5
