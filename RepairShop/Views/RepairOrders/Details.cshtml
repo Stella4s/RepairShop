@@ -1,0 +1,85 @@
+﻿@model RepairShop.Models.RepairOrder
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RepairOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parts)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>PartName</th>
+                    <th>PartStatus</th>
+                    <th>PartPrice</th>
+                </tr>
+                @foreach (var item in Model.Parts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PartName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PartStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RepairStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepairStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoursWorkedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoursWorkedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
