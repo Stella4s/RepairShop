@@ -44,12 +44,11 @@ namespace RepairShop.Models
         /// <returns></returns>
         public bool CheckIsLate()
         {
-            if (IsValidTime(StartDate) && RepairStatus == RepairStatus.Awaiting)
+            if (!IsValidTime(StartDate) && RepairStatus == RepairStatus.Awaiting)
                 return true;
             else
                 return false;
         }
-
         /// <summary>
         /// For checking if a StartTime is correct compared to the current time.
         /// </summary>
