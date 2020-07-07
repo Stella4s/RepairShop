@@ -19,7 +19,7 @@ namespace RepairShop.Controllers
         // GET: RepairOrders
         public ActionResult Index()
         {
-            var vm = new RepairOrderVM();
+            /*var vm = new RepairOrderVM();
             vm.RepairOrders = db.RepairOrders.ToList();
             IQueryable<RepairStatusGroup> data = from order in db.RepairOrders
                                                  group order by order.RepairStatus into statusGroup
@@ -29,7 +29,8 @@ namespace RepairShop.Controllers
                                                      StatusCount = statusGroup.Count()
                                                  };
             vm.RepairStatusGroups = data.ToList(); ;
-            return View(vm);
+            return View(vm);*/
+            return View(db.RepairOrders.ToList());
         }
 
         // GET: RepairOrders/Details/5
