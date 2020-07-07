@@ -30,7 +30,6 @@ namespace RepairShop.Controllers
                                                  };
             vm.RepairStatusGroups = data.ToList(); ;
             return View(vm);
-            //return View(db.RepairOrders.ToList());
         }
 
         // GET: RepairOrders/Details/5
