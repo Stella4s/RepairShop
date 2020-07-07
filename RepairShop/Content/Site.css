@@ -39,3 +39,7 @@ td.awaiting {
 .finished {
     color: forestgreen;
 }
+
+tr[modelAttr="true"]{
+    background-color: red;
+}

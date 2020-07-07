@@ -23,7 +23,7 @@ namespace RepairShop.Models
 
         [DisplayName("Begin Datum")]
         [DataType(DataType.Date)]
-        [DateFromNow]
+        //[DateFromNow]
         public DateTime StartDate { get; set; }
         [DisplayName("Eind Datum")]
         [DataType(DataType.Date)]
@@ -35,6 +35,32 @@ namespace RepairShop.Models
         public Technician Technician { get; set; }
         public int? HoursWorkedOn { get; set; }
         public string Description { get; set; }
+
+        public bool IsLate { get; set; }
+
+        /// <summary>
+        /// To use to check for a certain condition and either put in IsLate or check in html to get a return value.
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckIsLate()
+        {
+            if (IsValidTime(StartDate) && RepairStatus == RepairStatus.Awaiting)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// For checking if a StartTime is correct compared to the current time.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private bool IsValidTime(object value)// Return a boolean value: true == IsValid, false != IsValid
+        {
+            DateTime d = Convert.ToDateTime(value);
+            return d >= DateTime.Now; //Dates Greater than or equal to today are valid (true)
+
+        }
     }
 
     public enum RepairStatus

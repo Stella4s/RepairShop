@@ -60,7 +60,7 @@
 
     @foreach (var item in Model.RepairOrders)
     {
-        <tr>
+        <tr modelAttr="@item.CheckIsLate().ToString().ToLower()">
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>

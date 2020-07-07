@@ -41,6 +41,7 @@
                         RepairStatus = c.Int(nullable: false),
                         HoursWorkedOn = c.Int(),
                         Description = c.String(),
+                        IsLate = c.Boolean(nullable: false),
                         Customer_CustomerId = c.Int(),
                         Technician_TechnicianId = c.Int(),
                     })
