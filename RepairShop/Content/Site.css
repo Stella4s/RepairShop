@@ -24,21 +24,17 @@ textarea {
 }
 
 /*Set table td colour depending on Status Attribute*/
-table, td
-.awaiting {
-    text-align: right;
+
+td.awaiting {
     color: grey;
-    border-color: grey;
     background-color: #fcf8e3;
 }
 .inprogress {
     color: dodgerblue;
 }
 .awaitingparts {
-    text-align: right;
-    color: orange;
-    border-color: orange;
-    background-color: red;
+    color: grey;
+    background-color: sandybrown;
 }
 .finished {
     color: forestgreen;

@@ -61,22 +61,22 @@
     @foreach (var item in Model.RepairOrders)
     {
         <tr>
-            <td class="warning">
+            <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
-            <td class="awaitingparts">
+            <td>
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
-            <td class="awaiting">
+            <td class="@item.RepairStatus.ToString().ToLower()">
                 @Html.DisplayFor(modelItem => item.RepairStatus)
             </td>
-            <td class="alert-warning">
+            <td>
                 @Html.DisplayFor(modelItem => item.HoursWorkedOn)
             </td>
-            <td class="alert">
+            <td >
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td class="active">
+            <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
