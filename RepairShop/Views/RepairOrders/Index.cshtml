@@ -1,5 +1,7 @@
 ﻿@model RepairShop.ViewModels.RepairOrderVM
 
+@using RepairShop.CustomHtmlHelpers
+
 @{
     ViewBag.Title = "Index";
 }
@@ -60,7 +62,7 @@
 
     @foreach (var item in Model.RepairOrders)
     {
-        <tr modelAttr="@item.CheckIsLate().ToString().ToLower()">
+        <tr class="@Html.RepairOrderBackgroundStyle(modelItem => item, HtmlAttributes: new { @class = "text-danger" })">
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
@@ -73,7 +75,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.HoursWorkedOn)
             </td>
-            <td >
+            <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>

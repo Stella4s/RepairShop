@@ -26,9 +26,9 @@ namespace RepairShop.Controllers
                                                  select new RepairStatusGroup()
                                                  {
                                                      RepairStatus = statusGroup.Key,
-                                                     StatusCount = statusGroup.Count()
+                                                     StatusCount = statusGroup.Count(),
                                                  };
-            vm.RepairStatusGroups = data.ToList(); ;
+            vm.RepairStatusGroups = data.ToList();
             return View(vm);
         }
 

@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RepairOrdersController.cs" />
+    <Compile Include="CustomHtmlHelpers\TagExtension.cs" />
     <Compile Include="DAL\RepairShopContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
