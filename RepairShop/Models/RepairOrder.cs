@@ -7,6 +7,15 @@ using System.Web;
 
 namespace RepairShop.Models
 {
+    public class DateFromNowAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)// Return a boolean value: true == IsValid, false != IsValid
+        {
+            DateTime d = Convert.ToDateTime(value);
+            return d >= DateTime.Now; //Dates Greater than or equal to today are valid (true)
+
+        }
+    }
     public class RepairOrder
     {
         public int ID { get; set; }
@@ -14,6 +23,7 @@ namespace RepairShop.Models
 
         [DisplayName("Begin Datum")]
         [DataType(DataType.Date)]
+        [DateFromNow]
         public DateTime StartDate { get; set; }
         [DisplayName("Eind Datum")]
         [DataType(DataType.Date)]
