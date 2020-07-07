@@ -1,11 +1,38 @@
-﻿@model IEnumerable<RepairShop.Models.RepairOrder>
+﻿@model RepairShop.ViewModels.RepairOrderVM
 
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
 
+
+<h3>Status Statistics</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RepairStatusGroups.FirstOrDefault().RepairStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RepairStatusGroups.FirstOrDefault().StatusCount)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.RepairStatusGroups)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(dataItem => item.RepairStatus)
+            </td>
+            <td>
+                @item.StatusCount
+            </td>
+        </tr>
+    }
+</table>
+<br />
+
+
+<h3>Repair Orders List</h3>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -14,24 +41,24 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.StartDate)
+            @Html.DisplayNameFor(model => model.RepairOrders.FirstOrDefault().StartDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EndDate)
+            @Html.DisplayNameFor(model => model.RepairOrders.FirstOrDefault().EndDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RepairStatus)
+            @Html.DisplayNameFor(model => model.RepairOrders.FirstOrDefault().RepairStatus)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoursWorkedOn)
+            @Html.DisplayNameFor(model => model.RepairOrders.FirstOrDefault().HoursWorkedOn)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.RepairOrders.FirstOrDefault().Description)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.RepairOrders)
     {
         <tr>
             <td>
