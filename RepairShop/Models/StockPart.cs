@@ -5,11 +5,10 @@ using System.Web;
 
 namespace RepairShop.Models
 {
-    public class Part
+    public class StockPart
     {
-        public int PartId { get; set; }
-        public string PartName { get; set; }
-        public decimal Price { get; set; }
+        public int StockPartId { get; set; }
+        public CatlPart Part {get; set;}
         public PartStatus PartStatus { get; set; }
     }
 
