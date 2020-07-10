@@ -36,30 +36,30 @@
                         StartDate = c.DateTime(nullable: false),
                         EndDate = c.DateTime(nullable: false),
                         RepairStatus = c.Int(nullable: false),
+                        CustomerID = c.Int(nullable: false),
+                        TechnicianID = c.Int(nullable: false),
                         HoursWorkedOn = c.Int(),
                         Description = c.String(),
-                        Customer_ID = c.Int(),
-                        Technician_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Customer", t => t.Customer_ID)
-                .ForeignKey("dbo.Technician", t => t.Technician_ID)
-                .Index(t => t.Customer_ID)
-                .Index(t => t.Technician_ID);
+                .ForeignKey("dbo.Customer", t => t.CustomerID, cascadeDelete: true)
+                .ForeignKey("dbo.Technician", t => t.TechnicianID, cascadeDelete: true)
+                .Index(t => t.CustomerID)
+                .Index(t => t.TechnicianID);
             
             CreateTable(
                 "dbo.StockPart",
                 c => new
                     {
-                        StockPartId = c.Int(nullable: false, identity: true),
+                        StockPartID = c.Int(nullable: false, identity: true),
+                        CatlPartID = c.Int(nullable: false),
                         PartStatus = c.Int(nullable: false),
-                        Part_CatlPartId = c.Int(),
                         RepairOrder_ID = c.Int(),
                     })
-                .PrimaryKey(t => t.StockPartId)
-                .ForeignKey("dbo.CatlPart", t => t.Part_CatlPartId)
+                .PrimaryKey(t => t.StockPartID)
+                .ForeignKey("dbo.CatlPart", t => t.CatlPartID, cascadeDelete: true)
                 .ForeignKey("dbo.RepairOrder", t => t.RepairOrder_ID)
-                .Index(t => t.Part_CatlPartId)
+                .Index(t => t.CatlPartID)
                 .Index(t => t.RepairOrder_ID);
             
             CreateTable(
@@ -77,14 +77,14 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.RepairOrder", "Technician_ID", "dbo.Technician");
+            DropForeignKey("dbo.RepairOrder", "TechnicianID", "dbo.Technician");
             DropForeignKey("dbo.StockPart", "RepairOrder_ID", "dbo.RepairOrder");
-            DropForeignKey("dbo.StockPart", "Part_CatlPartId", "dbo.CatlPart");
-            DropForeignKey("dbo.RepairOrder", "Customer_ID", "dbo.Customer");
+            DropForeignKey("dbo.StockPart", "CatlPartID", "dbo.CatlPart");
+            DropForeignKey("dbo.RepairOrder", "CustomerID", "dbo.Customer");
             DropIndex("dbo.StockPart", new[] { "RepairOrder_ID" });
-            DropIndex("dbo.StockPart", new[] { "Part_CatlPartId" });
-            DropIndex("dbo.RepairOrder", new[] { "Technician_ID" });
-            DropIndex("dbo.RepairOrder", new[] { "Customer_ID" });
+            DropIndex("dbo.StockPart", new[] { "CatlPartID" });
+            DropIndex("dbo.RepairOrder", new[] { "TechnicianID" });
+            DropIndex("dbo.RepairOrder", new[] { "CustomerID" });
             DropTable("dbo.Technician");
             DropTable("dbo.StockPart");
             DropTable("dbo.RepairOrder");

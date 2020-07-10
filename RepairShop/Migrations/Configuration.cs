@@ -16,18 +16,6 @@
 
         protected override void Seed(DAL.RepairShopContext context)
         {
-            List<RepairOrder> repairOrders = new List<RepairOrder>
-            {
-                new RepairOrder{StartDate=DateTime.Parse("06-07-2020"), EndDate=DateTime.Parse("19-07-2020"), RepairStatus=RepairStatus.Finished},
-                new RepairOrder{StartDate=DateTime.Parse("04-07-2020"), EndDate=DateTime.Parse("20-07-2020"), RepairStatus=RepairStatus.Awaiting},
-                new RepairOrder{StartDate=DateTime.Parse("12-07-2020"), EndDate=DateTime.Parse("19-07-2020"), RepairStatus=RepairStatus.InProgress },
-                new RepairOrder{StartDate=DateTime.Parse("20-07-2020"), EndDate=DateTime.Parse("29-07-2020"), RepairStatus=RepairStatus.Awaiting},
-                new RepairOrder{StartDate=DateTime.Parse("29-08-2020"), EndDate=DateTime.Parse("29-07-2020"), RepairStatus=RepairStatus.Awaiting},
-                new RepairOrder{StartDate=DateTime.Parse("20-07-2020"), EndDate=DateTime.Parse("29-07-2020"), RepairStatus=RepairStatus.AwaitingParts},
-            };
-            repairOrders.ForEach(s => context.RepairOrders.Add(s));
-            context.SaveChanges();
-
             List<Customer> customers = new List<Customer>
             {
                 new Customer{FirstName="Julia", LastName="Dekker", Email="J.Dekker@gmail.com"},
@@ -47,6 +35,18 @@
                 new Technician{FirstName="Martijn", LastName="de Boer", HourPrice=(34.50M)},
             };
             technicians.ForEach(s => context.Technicians.Add(s));
+            context.SaveChanges();
+
+            List<RepairOrder> repairOrders = new List<RepairOrder>
+            {
+                new RepairOrder{StartDate=DateTime.Parse("06-07-2020"), EndDate=DateTime.Parse("19-07-2020"), RepairStatus=RepairStatus.Finished, CustomerID=1, TechnicianID=4},
+                new RepairOrder{StartDate=DateTime.Parse("04-07-2020"), EndDate=DateTime.Parse("20-07-2020"), RepairStatus=RepairStatus.Awaiting, CustomerID=5, TechnicianID=1},
+                new RepairOrder{StartDate=DateTime.Parse("12-07-2020"), EndDate=DateTime.Parse("19-07-2020"), RepairStatus=RepairStatus.InProgress , CustomerID=1, TechnicianID=1},
+                new RepairOrder{StartDate=DateTime.Parse("20-07-2020"), EndDate=DateTime.Parse("29-07-2020"), RepairStatus=RepairStatus.Awaiting, CustomerID=4, TechnicianID=3},
+                new RepairOrder{StartDate=DateTime.Parse("29-08-2020"), EndDate=DateTime.Parse("29-07-2020"), RepairStatus=RepairStatus.Awaiting, CustomerID=3, TechnicianID=2},
+                new RepairOrder{StartDate=DateTime.Parse("20-07-2020"), EndDate=DateTime.Parse("29-07-2020"), RepairStatus=RepairStatus.AwaitingParts, CustomerID=2, TechnicianID=3},
+            };
+            repairOrders.ForEach(s => context.RepairOrders.Add(s));
             context.SaveChanges();
 
             List<CatlPart> cParts = new List<CatlPart>
