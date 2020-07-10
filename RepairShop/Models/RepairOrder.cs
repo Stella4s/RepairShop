@@ -12,7 +12,7 @@ namespace RepairShop.Models
         public override bool IsValid(object value)// Return a boolean value: true == IsValid, false != IsValid
         {
             DateTime d = Convert.ToDateTime(value);
-            return d >= DateTime.Now; //Dates Greater than or equal to today are valid (true)
+            return d >= (DateTime.Today); //Dates Greater than or equal to today are valid (true)
 
         }
     }
@@ -23,9 +23,11 @@ namespace RepairShop.Models
 
         [DisplayName("Begin Datum")]
         [DataType(DataType.Date)]
-        //[DateFromNow]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DateFromNow]
         public DateTime StartDate { get; set; }
         [DisplayName("Eind Datum")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
 
@@ -57,7 +59,7 @@ namespace RepairShop.Models
         private bool IsValidTime(object value)// Return a boolean value: true == IsValid, false != IsValid
         {
             DateTime d = Convert.ToDateTime(value);
-            return d >= DateTime.Now; //Dates Greater than or equal to today are valid (true)
+            return d >= DateTime.Today; //Dates Greater than or equal to today are valid (true)
 
         }
     }
