@@ -5,10 +5,8 @@ using System.Web;
 
 namespace RepairShop.Models
 {
-    public class Customer
+    public class Customer : Person
     {
-        public int CustomerId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Email { get; set; }
     }
 }

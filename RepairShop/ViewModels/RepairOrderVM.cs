@@ -10,5 +10,7 @@ namespace RepairShop.ViewModels
     {
         public IEnumerable<RepairOrder> RepairOrders { get; set; }
         public IEnumerable<RepairStatusGroup> RepairStatusGroups { get; set; }
+        public IEnumerable<Technician> Technicians { get; set; }
+        public IEnumerable<Customer> Customers { get; set; }
     }
 }

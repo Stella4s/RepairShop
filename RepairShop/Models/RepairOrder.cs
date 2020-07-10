@@ -33,7 +33,7 @@ namespace RepairShop.Models
         public DateTime EndDate { get; set; }
 
         public RepairStatus RepairStatus { get; set; }
-        public virtual ICollection<Part> Parts { get; set; }
+        public virtual ICollection<StockPart> Parts { get; set; }
 
         public virtual Technician Technician { get; set; }
         public int? HoursWorkedOn { get; set; }
