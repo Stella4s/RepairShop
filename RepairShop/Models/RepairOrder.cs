@@ -20,7 +20,7 @@ namespace RepairShop.Models
     public class RepairOrder
     {
         public int ID { get; set; }
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
         [DisplayName("Begin Datum")]
         [DataType(DataType.Date)]
@@ -35,7 +35,7 @@ namespace RepairShop.Models
         public RepairStatus RepairStatus { get; set; }
         public virtual ICollection<Part> Parts { get; set; }
 
-        public Technician Technician { get; set; }
+        public virtual Technician Technician { get; set; }
         public int? HoursWorkedOn { get; set; }
         public string Description { get; set; }
     }
