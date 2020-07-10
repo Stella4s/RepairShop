@@ -24,7 +24,7 @@ namespace RepairShop.Models
         [DisplayName("Begin Datum")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [DateFromNow]
+        //[DateFromNow]
         public DateTime StartDate { get; set; }
         [DisplayName("Eind Datum")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
