@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -20,7 +21,6 @@ namespace RepairShop.Models
     public class RepairOrder
     {
         public int ID { get; set; }
-        public virtual Customer Customer { get; set; }
 
         [DisplayName("Begin Datum")]
         [DataType(DataType.Date)]
@@ -35,6 +35,10 @@ namespace RepairShop.Models
         public RepairStatus RepairStatus { get; set; }
         public virtual ICollection<StockPart> Parts { get; set; }
 
+        public int CustomerID { get; set; }
+        public virtual Customer Customer { get; set; }
+
+        public int TechnicianID { get; set; }
         public virtual Technician Technician { get; set; }
         public int? HoursWorkedOn { get; set; }
         public string Description { get; set; }
