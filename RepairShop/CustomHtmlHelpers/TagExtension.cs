@@ -23,7 +23,7 @@ namespace RepairShop.CustomHtmlHelpers
             object value = metadata.Model;
        */
 
-        public static HtmlString RepairOrderBackgroundStyle<TModel, TValue>(this HtmlHelper<TModel> helper, 
+        public static HtmlString AwaitingDateExceededStyling<TModel, TValue>(this HtmlHelper<TModel> helper, 
                                                                     Expression<Func<TModel, TValue>> expression, 
                                                                     object HtmlAttributes)
         {
@@ -36,7 +36,7 @@ namespace RepairShop.CustomHtmlHelpers
             object AttributesValue;
             attrs.TryGetValue(key, out AttributesValue);
 
-            if (value.RepairStatus.ToString() == "Awaiting" && DateTime.Now >= value.StartDate)
+            if (value.RepairStatus.ToString() == "Awaiting" && DateTime.Today >= value.StartDate)
             {
                 return new HtmlString(helper.Encode(String.Format("{0}", AttributesValue)));
             } else

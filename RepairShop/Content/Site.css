@@ -25,7 +25,7 @@ textarea {
 
 /*Set table td colour depending on Status Attribute*/
 
-td.awaiting {
+.awaiting {
     color: grey;
     background-color: #fcf8e3;
 }
@@ -38,8 +38,4 @@ td.awaiting {
 }
 .finished {
     color: forestgreen;
-}
-
-tr[modelAttr="true"]{
-    background-color: red;
 }

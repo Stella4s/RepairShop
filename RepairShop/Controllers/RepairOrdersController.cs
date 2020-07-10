@@ -20,12 +20,6 @@ namespace RepairShop.Controllers
         public ActionResult Index()
         {
             var vm = new RepairOrderVM();
-
-            //Set IsLate true or false.
-            foreach (var item in db.RepairOrders)
-            {
-                item.IsLate = item.CheckIsLate();
-            }
             //Add RepairOrders to List.
             vm.RepairOrders = db.RepairOrders.ToList();
 
@@ -72,7 +66,6 @@ namespace RepairShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                repairOrder.IsLate = repairOrder.CheckIsLate();
                 db.RepairOrders.Add(repairOrder);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -105,7 +98,6 @@ namespace RepairShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                repairOrder.IsLate = repairOrder.CheckIsLate();
                 db.Entry(repairOrder).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
