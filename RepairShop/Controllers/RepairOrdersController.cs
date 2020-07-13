@@ -101,11 +101,17 @@ namespace RepairShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RepairOrder, CustomerId")] RepairOrderVMEdit repairOrderVM)
+        public ActionResult Edit([Bind(Include = "ID, StartDate, EndDate, RepairStatus, Customer, Technician, HoursWorkedOn, Description, RepairOrder, CustomerId")] RepairOrderVMEdit repairOrderVM, int? CustomerId)
         {
             if (ModelState.IsValid)
             {
                 RepairOrder repairOrder = repairOrderVM.RepairOrder;
+                //If CustomerId has a value. (Which means the list was changed?)
+                //Find Customer in Customers and set it to be repairOrder's Customer?
+                if (CustomerId.HasValue)
+                {
+                    repairOrder.Customer = db.Customers.Find(repairOrderVM.CustomerId);
+                }
                 db.Entry(repairOrder).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
