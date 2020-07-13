@@ -85,8 +85,8 @@ namespace RepairShop.Controllers
             RepairOrderVMEdit repairOrderVM = new RepairOrderVMEdit
             {
                 RepairOrder = db.RepairOrders.Find(id),
-                Customers = db.Customers.ToList(),
-                Technicians = db.Technicians.ToList()
+                Technicians = db.Technicians.ToList(),
+                SelectListCustomers = new SelectList(db.Customers, "ID", "FirstName")  
             };
             //RepairOrder repairOrder = db.RepairOrders.Find(id);
             if (repairOrderVM == null)
@@ -110,7 +110,12 @@ namespace RepairShop.Controllers
                 //Find Customer in Customers and set it to be repairOrder's Customer?
                 if (CustomerId.HasValue)
                 {
-                    repairOrder.Customer = db.Customers.Find(repairOrderVM.CustomerId);
+                    Customer customer = db.Customers.Find(CustomerId);
+                    repairOrder.Customer = customer;
+                }
+                if (repairOrderVM.TechnicianId != 0)
+                {
+                    repairOrder.Technician = db.Technicians.Find(repairOrderVM.TechnicianId);
                 }
                 db.Entry(repairOrder).State = EntityState.Modified;
                 db.SaveChanges();
