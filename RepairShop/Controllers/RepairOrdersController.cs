@@ -19,7 +19,7 @@ namespace RepairShop.Controllers
         // GET: RepairOrders
         public ActionResult Index()
         {
-            var vm = new RepairOrderVM();
+            var vm = new RepairOrderVMIndex();
             //Add RepairOrders to List.
             vm.RepairOrders = db.RepairOrders.ToList();
 
@@ -33,8 +33,6 @@ namespace RepairShop.Controllers
                                                      StatusCount = statusGroup.Count(),
                                                  };
             vm.RepairStatusGroups = data.ToList();
-            vm.Customers = db.Customers.ToList();
-            vm.Technicians = db.Technicians.ToList();
             return View(vm);
         }
 
@@ -64,7 +62,7 @@ namespace RepairShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate,RepairStatus,HoursWorkedOn,Description")] RepairOrder repairOrder)
+        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate,RepairStatus,Customer,Technician,HoursWorkedOn,Description")] RepairOrder repairOrder)
         {
             if (ModelState.IsValid)
             {
@@ -83,12 +81,19 @@ namespace RepairShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RepairOrder repairOrder = db.RepairOrders.Find(id);
-            if (repairOrder == null)
+
+            RepairOrderVMEdit repairOrderVM = new RepairOrderVMEdit
+            {
+                RepairOrder = db.RepairOrders.Find(id),
+                Customers = db.Customers.ToList(),
+                Technicians = db.Technicians.ToList()
+            };
+            //RepairOrder repairOrder = db.RepairOrders.Find(id);
+            if (repairOrderVM == null)
             {
                 return HttpNotFound();
             }
-            return View(repairOrder);
+            return View(repairOrderVM);
         }
 
         // POST: RepairOrders/Edit/5
@@ -96,15 +101,16 @@ namespace RepairShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,StartDate,EndDate,RepairStatus,HoursWorkedOn,Description")] RepairOrder repairOrder)
+        public ActionResult Edit([Bind(Include = "RepairOrder, CustomerId")] RepairOrderVMEdit repairOrderVM)
         {
             if (ModelState.IsValid)
             {
+                RepairOrder repairOrder = repairOrderVM.RepairOrder;
                 db.Entry(repairOrder).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(repairOrder);
+            return View(repairOrderVM);
         }
 
         // GET: RepairOrders/Delete/5

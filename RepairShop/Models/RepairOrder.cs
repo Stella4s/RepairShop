@@ -35,10 +35,9 @@ namespace RepairShop.Models
         public RepairStatus RepairStatus { get; set; }
         public virtual ICollection<StockPart> Parts { get; set; }
 
-        public int CustomerID { get; set; }
+        //Corresponding Navigation property.
         public virtual Customer Customer { get; set; }
 
-        public int TechnicianID { get; set; }
         public virtual Technician Technician { get; set; }
         public int? HoursWorkedOn { get; set; }
         public string Description { get; set; }

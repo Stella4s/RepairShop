@@ -1,4 +1,4 @@
-﻿@model RepairShop.ViewModels.RepairOrderVM
+﻿@model RepairShop.ViewModels.RepairOrderVMIndex
 
 @using RepairShop.CustomHtmlHelpers
 
@@ -52,6 +52,12 @@
             @Html.DisplayNameFor(model => model.RepairOrders.FirstOrDefault().RepairStatus)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.RepairOrders.FirstOrDefault().Customer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RepairOrders.FirstOrDefault().Technician)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.RepairOrders.FirstOrDefault().HoursWorkedOn)
         </th>
         <th>
@@ -62,28 +68,34 @@
 
     @foreach (var item in Model.RepairOrders)
     {
-        <tr class="@Html.AwaitingDateExceededStyling(modelItem => item, HtmlAttributes: new { @class = "text-danger" })">
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td class="@item.RepairStatus.ToString().ToLower()">
-                @Html.DisplayFor(modelItem => item.RepairStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoursWorkedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+    <tr class="@Html.AwaitingDateExceededStyling(modelItem => item, HtmlAttributes: new { @class = "text-danger" })">
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td class="@item.RepairStatus.ToString().ToLower()">
+            @Html.DisplayFor(modelItem => item.RepairStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Technician)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoursWorkedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
     }
 
 </table>

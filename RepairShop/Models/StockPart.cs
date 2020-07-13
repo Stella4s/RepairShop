@@ -9,7 +9,6 @@ namespace RepairShop.Models
     public class StockPart
     {
         public int StockPartID { get; set; }
-        public int CatlPartID { get; set; }
         public CatlPart Part {get; set;}
         public PartStatus PartStatus { get; set; }
     }

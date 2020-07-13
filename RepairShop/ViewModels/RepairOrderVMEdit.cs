@@ -1,16 +1,16 @@
-﻿using System;
+﻿using RepairShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using RepairShop.Models;
 
 namespace RepairShop.ViewModels
 {
-    public class RepairOrderVM
+    public class RepairOrderVMEdit
     {
-        public IEnumerable<RepairOrder> RepairOrders { get; set; }
-        public IEnumerable<RepairStatusGroup> RepairStatusGroups { get; set; }
+        public RepairOrder RepairOrder { get; set; }
         public IEnumerable<Technician> Technicians { get; set; }
         public IEnumerable<Customer> Customers { get; set; }
+        public int CustomerId { get; set; }
     }
 }
