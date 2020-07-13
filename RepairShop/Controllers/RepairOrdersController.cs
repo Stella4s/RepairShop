@@ -54,7 +54,13 @@ namespace RepairShop.Controllers
         // GET: RepairOrders/Create
         public ActionResult Create()
         {
-            return View();
+            RepairOrderVMEdit repairOrderVM = new RepairOrderVMEdit
+            {
+                Customers = db.Customers.ToList(),
+                Technicians = db.Technicians.ToList()
+            };
+
+            return View(repairOrderVM);
         }
 
         // POST: RepairOrders/Create
@@ -62,16 +68,18 @@ namespace RepairShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate,RepairStatus,Customer,Technician,HoursWorkedOn,Description")] RepairOrder repairOrder)
+        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate,RepairStatus,Customer,Technician,HoursWorkedOn,Description")] RepairOrder repairOrder ,RepairOrderVMEdit repairOrderVM)
         {
             if (ModelState.IsValid)
             {
+                repairOrder.Customer = db.Customers.Find(repairOrderVM.CustomerId);
+                repairOrder.Technician = db.Technicians.Find(repairOrderVM.TechnicianId);
                 db.RepairOrders.Add(repairOrder);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(repairOrder);
+            return View(repairOrderVM);
         }
 
         // GET: RepairOrders/Edit/5
@@ -86,8 +94,18 @@ namespace RepairShop.Controllers
             {
                 RepairOrder = db.RepairOrders.Find(id),
                 Technicians = db.Technicians.ToList(),
-                SelectListCustomers = new SelectList(db.Customers, "ID", "FirstName")  
+                Customers = db.Customers.ToList(),
             };
+            try
+            {
+                repairOrderVM.CustomerId = repairOrderVM.RepairOrder.Customer.ID;
+                repairOrderVM.TechnicianId = repairOrderVM.RepairOrder.Technician.ID;
+            }
+            catch
+            {
+                repairOrderVM.CustomerId = 1;
+                repairOrderVM.TechnicianId = 1;
+            }
             //RepairOrder repairOrder = db.RepairOrders.Find(id);
             if (repairOrderVM == null)
             {
@@ -112,10 +130,6 @@ namespace RepairShop.Controllers
                 {
                     Customer customer = db.Customers.Find(CustomerId);
                     repairOrder.Customer = customer;
-                }
-                if (repairOrderVM.TechnicianId != 0)
-                {
-                    repairOrder.Technician = db.Technicians.Find(repairOrderVM.TechnicianId);
                 }
                 db.Entry(repairOrder).State = EntityState.Modified;
                 db.SaveChanges();
