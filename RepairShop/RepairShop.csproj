@@ -193,8 +193,8 @@
     <Compile Include="Models\Technician.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\RepairOrderVMEdit.cs" />
-    <Compile Include="ViewModels\RepairOrderVMIndex.cs" />
+    <Compile Include="ViewModels\VMRepairOrderEdit.cs" />
+    <Compile Include="ViewModels\VMRepairOrderIndex.cs" />
     <Compile Include="ViewModels\RepairStatusGroup.cs" />
   </ItemGroup>
   <ItemGroup>

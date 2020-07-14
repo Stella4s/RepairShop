@@ -6,7 +6,7 @@ using RepairShop.Models;
 
 namespace RepairShop.ViewModels
 {
-    public class RepairOrderVMIndex
+    public class VMRepairOrderIndex
     {
         public IEnumerable<RepairOrder> RepairOrders { get; set; }
         public IEnumerable<RepairStatusGroup> RepairStatusGroups { get; set; }

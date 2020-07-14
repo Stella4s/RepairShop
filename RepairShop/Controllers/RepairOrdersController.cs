@@ -19,7 +19,7 @@ namespace RepairShop.Controllers
         // GET: RepairOrders
         public ActionResult Index()
         {
-            var vm = new RepairOrderVMIndex();
+            var vm = new VMRepairOrderIndex();
             //Add RepairOrders to List.
             vm.RepairOrders = db.RepairOrders.ToList();
 
@@ -54,7 +54,7 @@ namespace RepairShop.Controllers
         // GET: RepairOrders/Create
         public ActionResult Create()
         {
-            RepairOrderVMEdit repairOrderVM = new RepairOrderVMEdit
+            VMRepairOrderEdit repairOrderVM = new VMRepairOrderEdit
             {
                 Customers = db.Customers.ToList(),
                 Technicians = db.Technicians.ToList()
@@ -68,7 +68,7 @@ namespace RepairShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate,RepairStatus,Customer,Technician,HoursWorkedOn,Description")] RepairOrder repairOrder ,RepairOrderVMEdit repairOrderVM)
+        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate,RepairStatus,Customer,Technician,HoursWorkedOn,Description")] RepairOrder repairOrder ,VMRepairOrderEdit repairOrderVM)
         {
             if (ModelState.IsValid)
             {
@@ -90,52 +90,68 @@ namespace RepairShop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            RepairOrderVMEdit repairOrderVM = new RepairOrderVMEdit
+            VMRepairOrderEdit vmRepairOrder = new VMRepairOrderEdit
             {
                 RepairOrder = db.RepairOrders.Find(id),
                 Technicians = db.Technicians.ToList(),
                 Customers = db.Customers.ToList(),
             };
-            try
-            {
-                repairOrderVM.CustomerId = repairOrderVM.RepairOrder.Customer.ID;
-                repairOrderVM.TechnicianId = repairOrderVM.RepairOrder.Technician.ID;
+            //Try to set it to the ID in RepairOrder.
+            //So the dropdown list will display the name of the currently selected property.
+            try {
+                vmRepairOrder.CustomerId = vmRepairOrder.RepairOrder.Customer.ID;
             }
-            catch
-            {
-                repairOrderVM.CustomerId = 1;
-                repairOrderVM.TechnicianId = 1;
+            catch {
+                vmRepairOrder.CustomerId = 1;
             }
+            try {
+                vmRepairOrder.TechnicianId = vmRepairOrder.RepairOrder.Technician.ID;
+            }
+            catch {
+                vmRepairOrder.TechnicianId = 1;
+            }
+
             //RepairOrder repairOrder = db.RepairOrders.Find(id);
-            if (repairOrderVM == null)
+            if (vmRepairOrder == null)
             {
                 return HttpNotFound();
             }
-            return View(repairOrderVM);
-        }
+            return View(vmRepairOrder);
+            }
 
         // POST: RepairOrders/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID, StartDate, EndDate, RepairStatus, Customer, Technician, HoursWorkedOn, Description, RepairOrder, CustomerId")] RepairOrderVMEdit repairOrderVM, int? CustomerId)
+        public ActionResult Edit([Bind(Include = "ID, StartDate, EndDate, RepairStatus, Customer, Technician, HoursWorkedOn, Description, RepairOrder, CustomerId")] VMRepairOrderEdit vmRepairOrder)
         {
             if (ModelState.IsValid)
             {
-                RepairOrder repairOrder = repairOrderVM.RepairOrder;
+                //Find the repairOrder in the database based on the ID.
+                RepairOrder repairOrder = db.RepairOrders.Find(vmRepairOrder.RepairOrder.ID);
+
                 //If CustomerId has a value. (Which means the list was changed?)
                 //Find Customer in Customers and set it to be repairOrder's Customer?
-                if (CustomerId.HasValue)
+                if (vmRepairOrder.CustomerId != null)
                 {
-                    Customer customer = db.Customers.Find(CustomerId);
-                    repairOrder.Customer = customer;
+                    //Load Customer first before altering. Otherwise Customer remains null.
+                    db.Entry(repairOrder).Reference(c => c.Customer).Load();
+
+                    //Find said Customer in the database and set it as the customer?
+                    repairOrder.Customer = db.Customers.Find(vmRepairOrder.CustomerId);
+                }
+                if (vmRepairOrder.TechnicianId != null)
+                {
+                    db.Entry(repairOrder).Reference(c => c.Technician).Load();
+
+                    repairOrder.Technician = db.Technicians.Find(vmRepairOrder.TechnicianId);
                 }
                 db.Entry(repairOrder).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(repairOrderVM);
+            return View(vmRepairOrder);
         }
 
         // GET: RepairOrders/Delete/5
