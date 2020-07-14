@@ -19,10 +19,11 @@ namespace RepairShop.Controllers
         // GET: RepairOrders
         public ActionResult Index()
         {
-            var vm = new VMRepairOrderIndex();
-            //Add RepairOrders to List.
-            vm.RepairOrders = db.RepairOrders.ToList();
-
+            var vm = new VMRepairOrderIndex
+            {
+                //Add RepairOrders to List.
+                RepairOrders = db.RepairOrders.ToList()
+            };
 
             //Make RepairStatusGroup from RepairOrders.
             IQueryable<RepairStatusGroup> data = from order in db.RepairOrders
