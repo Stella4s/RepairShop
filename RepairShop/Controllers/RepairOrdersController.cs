@@ -34,6 +34,8 @@ namespace RepairShop.Controllers
                                                      StatusCount = statusGroup.Count(),
                                                  };
             vm.RepairStatusGroups = data.ToList();
+            vm.Customers = db.Customers.ToList();
+            vm.Technicians = db.Technicians.ToList();
             return View(vm);
         }
 
