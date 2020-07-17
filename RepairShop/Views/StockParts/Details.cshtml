@@ -1,0 +1,34 @@
+﻿@model RepairShop.Models.StockPart
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StockPart</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Part.PartName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Part.PartName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StockPartID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

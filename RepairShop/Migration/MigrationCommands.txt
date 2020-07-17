@@ -1,0 +1,10 @@
+﻿
+enable-migrations -ContextTypeName RepairShop.DAL.RepairShopContext
+
+
+add-Migration -Configuration RepairShop.Migr.Configuration
+
+ 
+
+(upgrade)
+update-database -Configuration RepairShop.Migr.Configuration

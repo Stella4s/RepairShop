@@ -45,5 +45,30 @@ namespace RepairShop.CustomHtmlHelpers
             }
 
         }
+
+        //public static HtmlString DisplayCustomer<TModel, TValue>(this HtmlHelper<TModel> helper,
+        //                                                    Expression<Func<TModel, TValue>> expression)
+        //{
+            //ModelMetadata metadata = ModelMetadata.FromLambdaExpression(expression, helper.ViewData);
+            //Type type = metadata.ModelType;
+            //string name = ExpressionHelper.GetExpressionText(expression);
+            //Customer value = metadata.Model as Customer;
+            //IDictionary<string, object> attrs = new RouteValueDictionary(HtmlAttributes);
+            //string key = "Class";
+            //object AttributesValue;
+            //attrs.TryGetValue(key, out AttributesValue);
+
+            //if (value.RepairStatus.ToString() == "Awaiting" && DateTime.Today >= value.StartDate)
+            //{
+            //    return new HtmlString(helper.Encode(String.Format("{0}", AttributesValue)));
+            //}
+            //else
+            //{
+            //    return new HtmlString("");
+            //}
+
+        //}
+
+
     }
 }

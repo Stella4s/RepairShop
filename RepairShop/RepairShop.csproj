@@ -169,9 +169,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CatlPartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RepairOrdersController.cs" />
+    <Compile Include="Controllers\StockPartsController.cs" />
     <Compile Include="CustomHtmlHelpers\TagExtension.cs" />
     <Compile Include="DAL\RepairShopContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -195,6 +197,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\RepairOrderVM.cs" />
     <Compile Include="ViewModels\RepairStatusGroup.cs" />
+    <Compile Include="ViewModels\StockGroup.cs" />
+    <Compile Include="Views\StockPartsController2.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -258,6 +262,16 @@
     <Content Include="Views\RepairOrders\Details.cshtml" />
     <Content Include="Views\RepairOrders\Edit.cshtml" />
     <Content Include="Views\RepairOrders\Index.cshtml" />
+    <Content Include="Views\CatlParts\Create.cshtml" />
+    <Content Include="Views\CatlParts\Delete.cshtml" />
+    <Content Include="Views\CatlParts\Details.cshtml" />
+    <Content Include="Views\CatlParts\Edit.cshtml" />
+    <Content Include="Views\CatlParts\Index.cshtml" />
+    <Content Include="Views\StockParts\Create.cshtml" />
+    <Content Include="Views\StockParts\Delete.cshtml" />
+    <Content Include="Views\StockParts\Details.cshtml" />
+    <Content Include="Views\StockParts\Edit.cshtml" />
+    <Content Include="Views\StockParts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
