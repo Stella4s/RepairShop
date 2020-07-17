@@ -198,6 +198,8 @@
     <Compile Include="ViewModels\RepairOrderVM.cs" />
     <Compile Include="ViewModels\RepairStatusGroup.cs" />
     <Compile Include="ViewModels\StockGroup.cs" />
+    <Compile Include="ViewModels\VMRepairOrderEdit.cs" />
+    <Compile Include="ViewModels\VMRepairOrderIndex.cs" />
     <Compile Include="Views\StockPartsController2.cs" />
   </ItemGroup>
   <ItemGroup>
