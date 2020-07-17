@@ -129,8 +129,13 @@ namespace RepairShop.Controllers
         {
             if (ModelState.IsValid)
             {
+                RepairOrder repairOrder = vmRepairOrder.RepairOrder;
+                db.Entry(repairOrder).State = EntityState.Modified;
+                db.SaveChanges();
+
                 //Find the repairOrder in the database based on the ID.
-                RepairOrder repairOrder = db.RepairOrders.Find(vmRepairOrder.RepairOrder.ID);
+                repairOrder = db.RepairOrders.Find(vmRepairOrder.RepairOrder.ID);
+
 
                 //If CustomerId has a value. (Which means the list was changed?)
                 //Find Customer in Customers and set it to be repairOrder's Customer?
@@ -148,6 +153,7 @@ namespace RepairShop.Controllers
 
                     repairOrder.Technician = db.Technicians.Find(vmRepairOrder.TechnicianId);
                 }
+
                 db.Entry(repairOrder).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
