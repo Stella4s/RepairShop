@@ -1,0 +1,61 @@
+﻿@model IEnumerable<RepairShop.ViewModels.StockGroup>
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { amount = 0 }, htmlAttributes: new { @id = "createNew" })
+    <input type="range" min="1" max="9" class="form-control-range" onchange="var link = $('#createNew').attr('href'); link = link.substr(0, link.length - 1); $('#createNew').attr('href', link + this.value);" />
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PartName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+
+
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PartName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PartPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StockStatus)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Count)
+    </td>
+    <td>
+        @*
+        @Html.ActionLink("Edit", "Edit", new { id = item.StockPartID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.StockPartID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.StockPartID })
+        *@
+    </td>
+</tr>
+}
+
+</table>

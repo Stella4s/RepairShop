@@ -169,18 +169,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CatlPartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RepairOrdersController.cs" />
-    <Compile Include="CustomHtmlHelpers\CustomHelper.cs" />
+    <Compile Include="Controllers\StockPartsController.cs" />
     <Compile Include="CustomHtmlHelpers\TagExtension.cs" />
     <Compile Include="DAL\RepairShopContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007131110187_Init.cs" />
-    <Compile Include="Migrations\202007131110187_Init.designer.cs">
-      <DependentUpon>202007131110187_Init.cs</DependentUpon>
+    <Compile Include="Migrations\202007101336188_Init.cs" />
+    <Compile Include="Migrations\202007101336188_Init.designer.cs">
+      <DependentUpon>202007101336188_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -194,9 +195,10 @@
     <Compile Include="Models\Technician.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\VMRepairOrderEdit.cs" />
-    <Compile Include="ViewModels\VMRepairOrderIndex.cs" />
+    <Compile Include="ViewModels\RepairOrderVM.cs" />
     <Compile Include="ViewModels\RepairStatusGroup.cs" />
+    <Compile Include="ViewModels\StockGroup.cs" />
+    <Compile Include="Views\StockPartsController2.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -260,6 +262,16 @@
     <Content Include="Views\RepairOrders\Details.cshtml" />
     <Content Include="Views\RepairOrders\Edit.cshtml" />
     <Content Include="Views\RepairOrders\Index.cshtml" />
+    <Content Include="Views\CatlParts\Create.cshtml" />
+    <Content Include="Views\CatlParts\Delete.cshtml" />
+    <Content Include="Views\CatlParts\Details.cshtml" />
+    <Content Include="Views\CatlParts\Edit.cshtml" />
+    <Content Include="Views\CatlParts\Index.cshtml" />
+    <Content Include="Views\StockParts\Create.cshtml" />
+    <Content Include="Views\StockParts\Delete.cshtml" />
+    <Content Include="Views\StockParts\Details.cshtml" />
+    <Content Include="Views\StockParts\Edit.cshtml" />
+    <Content Include="Views\StockParts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -278,8 +290,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007131110187_Init.resx">
-      <DependentUpon>202007131110187_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007101336188_Init.resx">
+      <DependentUpon>202007101336188_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
