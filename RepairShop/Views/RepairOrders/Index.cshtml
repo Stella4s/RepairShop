@@ -79,10 +79,29 @@
                 @Html.DisplayFor(modelItem => item.RepairStatus)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer)
+                @*@Html.DisplayFor(modelItem => item.Customer)*@
+                <div style="padding-bottom:0.5em;">
+                    <div style="text-decoration:underline">Name</div>
+                    @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                    @Html.DisplayFor(modelItem => item.Customer.LastName)
+                </div>
+
+                <div style="text-decoration:underline">@Html.DisplayNameFor(modelItem => item.Customer.Email)</div>
+                @Html.DisplayFor(modelItem => item.Customer.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Technician)
+                @*@Html.DisplayFor(modelItem => item.Technician)*@
+
+                <div style="padding-bottom:0.5em;">
+                    <div style="text-decoration:underline">Name</div>
+                    @Html.DisplayFor(modelItem => item.Technician.FirstName)
+                    @Html.DisplayFor(modelItem => item.Technician.LastName)
+                </div>
+
+                <div style="text-decoration:underline">
+                    @Html.DisplayNameFor(modelItem => item.Technician.HourPrice)
+                </div>
+                @Html.DisplayFor(modelItem => item.Technician.HourPrice)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HoursWorkedOn)
