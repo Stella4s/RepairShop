@@ -68,7 +68,7 @@
 
     @foreach (var item in Model.RepairOrders)
     {
-        <tr class="@Html.AwaitingDateExceededStyling(modelItem => item, HtmlAttributes: new { @class = "text-danger" })">
+        <tr class="@Html.AwaitingDateExceededStyling(modelItem => item, HtmlAttributes: new { @class = "text-isLate" })">
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>

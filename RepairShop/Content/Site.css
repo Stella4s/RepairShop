@@ -26,16 +26,21 @@ textarea {
 /*Set table td colour depending on Status Attribute*/
 
 .awaiting {
-    color: grey;
-    background-color: #fcf8e3;
+    color: #9c0a00;
+    text-decoration: underline;
+    font-weight:bold;
 }
 .inprogress {
     color: dodgerblue;
 }
 .awaitingparts {
-    color: grey;
-    background-color: sandybrown;
+    color: lightslategrey;
+    background-color: #fcf8e3;
 }
 .finished {
     color: forestgreen;
+}
+
+tr.text-isLate {
+    background-color: #f5857d;
 }
