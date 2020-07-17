@@ -25,7 +25,7 @@ namespace RepairShop.Controllers
             IQueryable<StockGroup> data =  from part in db.CatlParts
                                             join stock in db.StockParts on part equals stock.Part into j
                                             from item in j
-                                            group item by new { item.Part.PartName, item.PartStatus, item.Part.Price, item.CatlPartID } into g
+                                            group item by new { item.Part.PartName, item.PartStatus, item.Part.Price } into g
                                             select new StockGroup
                                             {
                                                 GroupedStockParts = g.ToList(),
@@ -57,7 +57,7 @@ namespace RepairShop.Controllers
         // GET: StockParts/Create
         public ActionResult Create()
         {
-            ViewBag.CatlPartID = new SelectList(db.CatlParts, "CatlPartId", "PartName");
+            ViewBag.CatlPartId = new SelectList(db.CatlParts, "CatlPartId", "PartName");
             return View();
         }
 
@@ -66,12 +66,12 @@ namespace RepairShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StockPartID,CatlPartID,PartStatus")] StockPart stockGroup)
+        public ActionResult Create([Bind(Include = "StockPartID,CatlPartId,PartStatus")] StockPart stockGroup)
         {
             //StockPart stp = new StockPart()
             //{
             //    StockPartID = ,
-            //    CatlPartID = ,
+            //    CatlPartId = ,
             //};
 
             if (ModelState.IsValid)
@@ -85,7 +85,7 @@ namespace RepairShop.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CatlPartID = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockGroup.CatlPartID);
+            ViewBag.CatlPartId = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockGroup.StockPartID);
             return View(stockGroup);
         }
 
@@ -101,7 +101,7 @@ namespace RepairShop.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CatlPartID = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockPart.CatlPartID);
+            //ViewBag.CatlPartId = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockPart.CatlPartID);
             return View(stockPart);
         }
 
@@ -110,7 +110,7 @@ namespace RepairShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StockPartID,CatlPartID,PartStatus")] StockPart stockPart)
+        public ActionResult Edit([Bind(Include = "StockPartID,CatlPartId,PartStatus")] StockPart stockPart)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +118,7 @@ namespace RepairShop.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CatlPartID = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockPart.CatlPartID);
+            ViewBag.CatlPartId = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockPart.StockPartID);
             return View(stockPart);
         }
 

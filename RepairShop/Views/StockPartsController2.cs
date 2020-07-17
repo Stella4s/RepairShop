@@ -58,7 +58,7 @@ namespace RepairShop.Views
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CatlPartID = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockPart.CatlPartID);
+            ViewBag.CatlPartID = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockPart.StockPartID);
             return View(stockPart);
         }
 
@@ -74,7 +74,7 @@ namespace RepairShop.Views
             {
                 return HttpNotFound();
             }
-            ViewBag.CatlPartID = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockPart.CatlPartID);
+            ViewBag.CatlPartId = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockPart.StockPartID);
             return View(stockPart);
         }
 
@@ -91,7 +91,7 @@ namespace RepairShop.Views
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CatlPartID = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockPart.CatlPartID);
+            ViewBag.CatlPartId = new SelectList(db.CatlParts, "CatlPartId", "PartName", stockPart.StockPartID);
             return View(stockPart);
         }
 
